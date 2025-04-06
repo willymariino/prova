@@ -86,6 +86,8 @@ window.addEventListener("DOMContentLoaded", async () => {
             return;
         }
 
+        const weaponsList = document.getElementById("weaponsList")
+
         // 1. Leggi le armi da #weaponsList
         const predefined = {};
         const custom = {};
