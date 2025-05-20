@@ -1,69 +1,69 @@
 Showing 1-34 of 34
-Fearless (The Powerless Trilogy, #3)Fearless (The Powerless Trilogy, #3)
+Fearless (The Powerless Trilogy, #3)
 by Lauren Roberts (Goodreads Author) (shelved 1 time as tbr-fisico-fantasy)
 avg rating 4.22 — 143,544 ratings — published 2025
 
-Wisteria (Belladonna, #3)Wisteria (Belladonna, #3)
+Wisteria (Belladonna, #3)
 by Adalyn Grace (Goodreads Author) (shelved 1 time as tbr-fisico-fantasy)
 avg rating 4.24 — 33,086 ratings — published 2024
   
   
-The Ashes & the Star-Cursed King (Crowns of Nyaxia, #2)The Ashes & the Star-Cursed King (Crowns of Nyaxia, #2)
+The Ashes & the Star-Cursed King (Crowns of Nyaxia, #2)
 by Carissa Broadbent (Goodreads Author) (shelved 1 time as tbr-fisico-fantasy)
 avg rating 4.10 — 383,935 ratings — published 2023
   
   
-Chain of Gold (The Last Hours, #1)Chain of Gold (The Last Hours, #1)
+Chain of Gold (The Last Hours, #1)
 by Cassandra Clare (Goodreads Author) (shelved 1 time as tbr-fisico-fantasy)
 avg rating 4.37 — 115,711 ratings — published 2020
   
   
-Lord of Shadows (The Dark Artifices, #2)Lord of Shadows (The Dark Artifices, #2)
+Lord of Shadows (The Dark Artifices, #2)
 by Cassandra Clare (Goodreads Author) (shelved 1 time as tbr-fisico-fantasy)
 avg rating 4.40 — 154,925 ratings — published 2017
   
   
-Lady Midnight (The Dark Artifices, #1)Lady Midnight (The Dark Artifices, #1)
+Lady Midnight (The Dark Artifices, #1)
 by Cassandra Clare (Goodreads Author) (shelved 1 time as tbr-fisico-fantasy)
 avg rating 4.35 — 239,245 ratings — published 2016
   
   
-Allegiant (Divergent, #3)Allegiant (Divergent, #3)
+Allegiant (Divergent, #3)
 by Veronica Roth (Goodreads Author) (shelved 1 time as tbr-fisico-fantasy)
 avg rating 3.60 — 1,113,529 ratings — published 2013
   
   
-City of Heavenly Fire (The Mortal Instruments, #6)City of Heavenly Fire (The Mortal Instruments, #6)
+City of Heavenly Fire (The Mortal Instruments, #6)
 by Cassandra Clare (Goodreads Author) (shelved 1 time as tbr-fisico-fantasy)
 avg rating 4.38 — 405,770 ratings — published 2014
   
   
-Legends & Lattes (Legends & Lattes, #1)Legends & Lattes (Legends & Lattes, #1)
+Legends & Lattes (Legends & Lattes, #1)
 by Travis Baldree (Goodreads Author) (shelved 1 time as tbr-fisico-fantasy)
 avg rating 4.07 — 286,950 ratings — published 2022
   
   
-Siege and Storm (The Shadow and Bone Trilogy, #2)Siege and Storm (The Shadow and Bone Trilogy, #2)
+Siege and Storm (The Shadow and Bone Trilogy, #2)
 by Leigh Bardugo (Goodreads Author) (shelved 1 time as tbr-fisico-fantasy)
 avg rating 3.81 — 661,487 ratings — published 2013
   
   
-Shadow and Bone (Shadow and Bone, #1)Shadow and Bone (Shadow and Bone, #1)
+Shadow and Bone (Shadow and Bone, #1)
 by Leigh Bardugo (Goodreads Author) (shelved 1 time as tbr-fisico-fantasy)
 avg rating 3.92 — 1,047,771 ratings — published 2012
   
   
-Powerless (Powerless, #1)Powerless (Powerless, #1)
+Powerless (Powerless, #1)
 by Lauren Roberts (Goodreads Author) (shelved 1 time as tbr-fisico-fantasy)
 avg rating 4.17 — 691,170 ratings — published 2023
   
   
-City of Lost Souls (The Mortal Instruments, #5)City of Lost Souls (The Mortal Instruments, #5)
+City of Lost Souls (The Mortal Instruments, #5)
 by Cassandra Clare (Goodreads Author) (shelved 1 time as tbr-fisico-fantasy)
 avg rating 4.21 — 555,793 ratings — published 2012
   
   
-City of Fallen Angels (The Mortal Instruments, #4)City of Fallen Angels (The Mortal Instruments, #4)
+City of Fallen Angels (The Mortal Instruments, #4)
 by Cassandra Clare (Goodreads Author) (shelved 1 time as tbr-fisico-fantasy)
 avg rating 4.07 — 628,075 ratings — published 2011
   
