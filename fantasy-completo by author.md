@@ -3,7 +3,6 @@ Yarros, Rebecca *
 
 Iron Flame (The Empyrean, #2)
 Yarros, Rebecca *
-4.37
   
 Onyx Storm (The Empyrean, #3)
 Yarros, Rebecca *
@@ -13,8 +12,7 @@ Saft, Allison *
 
 Allegiant (Divergent Series, 3)
 Roth, Veronica *
-3.60
-  
+
 Vespertine
 Rogerson, Margaret *
 
@@ -59,3 +57,60 @@ Grace, Adalyn *
 
 Wisteria (Belladonna, #3)
 Grace, Adalyn *
+
+One Dark Window (The Shepherd King, #1)
+Gillig, Rachel *
+
+Città di Ossa (Shadowhunters #1)
+Clare, Cassandra *
+
+City of Ashes (The Mortal Instruments, #2)
+Clare, Cassandra *
+
+City of Glass (The Mortal Instruments, #3)
+Clare, Cassandra *
+
+City of Fallen Angels (The Mortal Instruments, #4)
+Clare, Cassandra *
+
+City of Lost Souls (The Mortal Instruments, #5)
+Clare, Cassandra *
+
+City of Heavenly Fire (The Mortal Instruments, #6)
+Clare, Cassandra *
+
+Signora della mezzanotte
+Clare, Cassandra *
+
+Signore delle Ombre
+Clare, Cassandra *
+
+Chain of Gold (The Last Hours, #1)
+Clare, Cassandra *
+
+The Serpent and the Wings of Night (Crowns of Nyaxia, #1)
+Broadbent, Carissa *
+
+The Ashes & the Star-Cursed King (Crowns of Nyaxia, #2)
+Broadbent, Carissa *
+
+Tenebre e ossa
+Bardugo, Leigh *
+
+Siege and Storm (The Shadow and Bone Trilogy, #2)
+Bardugo, Leigh *
+
+Ruin and Rising (The Shadow and Bone Trilogy, #3)
+Bardugo, Leigh *
+
+Six of Crows (Six of Crows, #1)
+Bardugo, Leigh *
+
+Crooked Kingdom (Six of Crows, #2)
+Bardugo, Leigh *
+
+Legends & Lattes (Legends & Lattes, #1)
+Baldree, Travis *
+
+Il regno del destino
+Aveyard, Victoria *
