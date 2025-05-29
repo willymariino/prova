@@ -52,7 +52,7 @@ export default ListaAttività;
 🔥 Ora puoi creare una lista dinamica con attività personalizzate! Vuoi qualche altra modifica o spiegazione? 🚀
 
 
-# spiegazione di quando serve il tag "<form>" #
+# spiegazione di quando serve il tag form #
 
 
 Ottima osservazione! In React, **non è obbligatorio** racchiudere l’`<input>` in un `<form>` per funzionare, soprattutto se gestiamo l’evento di input manualmente con `onChange` e `useState`. 
