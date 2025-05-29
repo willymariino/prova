@@ -269,3 +269,662 @@ export default ListaAttività;
 
 Vuoi aggiungere la possibilità di modificare un'attività esistente invece di eliminarla? 🚀
 
+# aggiunta barra di ricerca per i todo
+
+Ottima idea! Aggiungiamo una **barra di ricerca** per filtrare le attività in base al testo inserito. Così, l'utente può digitare una parola e vedere solo i to-do che la contengono.
+
+---
+
+### **🛠️ Passaggi per aggiungere la barra di ricerca**
+1. **Creiamo uno stato `query` per gestire il testo della ricerca**.
+2. **Filtriamo le attività in base a `query`**.
+3. **Aggiorniamo la lista in tempo reale mentre l'utente scrive**.
+
+Ecco il codice aggiornato:
+
+```js
+import { useState } from "react";
+
+function ListaAttività() {
+  const [attività, setAttività] = useState([
+    { nome: "Studiare React", categoria: "Studio" },
+    { nome: "Fare esercizi", categoria: "Salute" },
+    { nome: "Guardare un film", categoria: "Tempo libero" }
+  ]);
+  
+  const [nuovaAttività, setNuovaAttività] = useState("");
+  const [categoria, setCategoria] = useState("Tutte"); // Filtro per categoria
+  const [query, setQuery] = useState(""); // Barra di ricerca
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (nuovaAttività.trim() !== "") {
+      setAttività([...attività, { nome: nuovaAttività, categoria }]);
+      setNuovaAttività("");
+    }
+  }
+
+  function eliminaAttività(index) {
+    setAttività(attività.filter((_, i) => i !== index));
+  }
+
+  // Filtra le attività in base alla categoria e al testo della ricerca
+  const attivitàFiltrate = attività.filter(item =>
+    (categoria === "Tutte" || item.categoria === categoria) &&
+    item.nome.toLowerCase().includes(query.toLowerCase())
+  );
+
+  return (
+    <div>
+      <h3>Lista attività:</h3>
+
+      {/* Barra di ricerca */}
+      <input
+        type="text"
+        placeholder="Cerca attività..."
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+      />
+
+      {/* Selezione categoria */}
+      <label>Filtra per categoria:</label>
+      <select onChange={(e) => setCategoria(e.target.value)}>
+        <option value="Tutte">Tutte</option>
+        <option value="Studio">Studio</option>
+        <option value="Salute">Salute</option>
+        <option value="Tempo libero">Tempo libero</option>
+      </select>
+
+      <ul>
+        {attivitàFiltrate.map((item, index) => (
+          <li key={index}>
+            {item.nome} ({item.categoria})
+            <button onClick={() => eliminaAttività(index)}>❌</button>
+          </li>
+        ))}
+      </ul>
+
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={nuovaAttività}
+          onChange={e => setNuovaAttività(e.target.value)}
+          placeholder="Scrivi una nuova attività..."
+        />
+        <button type="submit">Aggiungi attività</button>
+      </form>
+    </div>
+  );
+}
+
+export default ListaAttività;
+```
+
+---
+
+### **🚀 Cosa abbiamo aggiunto?**
+✅ **Stato `query`**: Contiene il testo inserito nella barra di ricerca.  
+✅ **`toLowerCase()`**: Converte tutto in minuscolo per una ricerca **case insensitive**.  
+✅ **`includes(query)`**: Controlla se il nome dell'attività **contiene** il testo digitato.  
+✅ **Filtriamo le attività in base a *categoria* e *query*, mostrando solo quelle rilevanti**.  
+
+💡 **Ora puoi cercare tra le attività mentre scrivi!** Vuoi che aggiungiamo anche la **modifica delle attività**? 🚀
+
+# aggiunta opzione modifica attività esistenti
+
+Perfetto! Aggiungiamo la **modifica delle attività esistenti**, così gli utenti potranno **aggiornare il nome** di una voce nella lista anziché eliminarla e ricrearla. 💡
+
+---
+
+### **🛠️ Passaggi per implementare la modifica**
+1️⃣ **Aggiungiamo uno stato `modificaIndex` per identificare quale attività viene modificata**.  
+2️⃣ **Mostriamo un input invece del testo quando l'utente clicca "Modifica"**.  
+3️⃣ **Aggiorniamo la lista con il nuovo valore quando l'utente conferma la modifica**.  
+
+---
+
+### **📜 Codice aggiornato**
+```js
+import { useState } from "react";
+
+function ListaAttività() {
+  const [attività, setAttività] = useState([
+    { nome: "Studiare React", categoria: "Studio" },
+    { nome: "Fare esercizi", categoria: "Salute" },
+    { nome: "Guardare un film", categoria: "Tempo libero" }
+  ]);
+  
+  const [nuovaAttività, setNuovaAttività] = useState("");
+  const [categoria, setCategoria] = useState("Tutte"); 
+  const [query, setQuery] = useState(""); 
+  const [modificaIndex, setModificaIndex] = useState(null); 
+  const [modificaTesto, setModificaTesto] = useState(""); 
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (nuovaAttività.trim() !== "") {
+      setAttività([...attività, { nome: nuovaAttività, categoria }]);
+      setNuovaAttività("");
+    }
+  }
+
+  function eliminaAttività(index) {
+    setAttività(attività.filter((_, i) => i !== index));
+  }
+
+  function avviaModifica(index) {
+    setModificaIndex(index);
+    setModificaTesto(attività[index].nome);
+  }
+
+  function confermaModifica(index) {
+    const attivitàAggiornate = [...attività];
+    attivitàAggiornate[index].nome = modificaTesto;
+    setAttività(attivitàAggiornate);
+    setModificaIndex(null); 
+  }
+
+  const attivitàFiltrate = attività.filter(item =>
+    (categoria === "Tutte" || item.categoria === categoria) &&
+    item.nome.toLowerCase().includes(query.toLowerCase())
+  );
+
+  return (
+    <div>
+      <h3>Lista attività:</h3>
+
+      <input
+        type="text"
+        placeholder="Cerca attività..."
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+      />
+
+      <label>Filtra per categoria:</label>
+      <select onChange={(e) => setCategoria(e.target.value)}>
+        <option value="Tutte">Tutte</option>
+        <option value="Studio">Studio</option>
+        <option value="Salute">Salute</option>
+        <option value="Tempo libero">Tempo libero</option>
+      </select>
+
+      <ul>
+        {attivitàFiltrate.map((item, index) => (
+          <li key={index}>
+            {modificaIndex === index ? (
+              <>
+                <input
+                  type="text"
+                  value={modificaTesto}
+                  onChange={(e) => setModificaTesto(e.target.value)}
+                />
+                <button onClick={() => confermaModifica(index)}>✔️</button>
+                <button onClick={() => setModificaIndex(null)}>❌</button>
+              </>
+            ) : (
+              <>
+                {item.nome} ({item.categoria}) 
+                <button onClick={() => avviaModifica(index)}>✏️</button>
+                <button onClick={() => eliminaAttività(index)}>❌</button>
+              </>
+            )}
+          </li>
+        ))}
+      </ul>
+
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={nuovaAttività}
+          onChange={e => setNuovaAttività(e.target.value)}
+          placeholder="Scrivi una nuova attività..."
+        />
+        <button type="submit">Aggiungi attività</button>
+      </form>
+    </div>
+  );
+}
+
+export default ListaAttività;
+```
+
+---
+
+### **🚀 Cosa abbiamo aggiunto?**
+✅ **`modificaIndex`**: Identifica l'elemento in modifica.  
+✅ **Quando un'attività è in modifica, sostituiamo il testo con un input**.  
+✅ **`avviaModifica(index)`**: Inserisce il testo dell'attività nell'input per modificarlo.  
+✅ **`confermaModifica(index)`**: Aggiorna la lista e salva il nuovo nome.  
+✅ **Bottone ✏️** per modificare un'attività.  
+
+---
+
+💡 Ora puoi **cercare, filtrare, modificare ed eliminare** le attività! 🎯  
+Vuoi migliorare ancora di più l'app, magari salvando i dati su `localStorage`? 🚀
+
+# aggiunta local storage
+ Ottima scelta! Aggiungiamo **Local Storage** per **salvare le attività anche dopo il refresh della pagina**. 🗄️✨
+
+---
+
+### **🛠️ Passaggi per usare Local Storage**
+1️⃣ **Quando lo stato `attività` cambia, salviamo la lista nel localStorage**.  
+2️⃣ **Al caricamento della pagina, recuperiamo i dati salvati**.  
+3️⃣ **Verifichiamo se ci sono dati validi prima di aggiornarli**.  
+
+---
+
+### **📜 Codice aggiornato con Local Storage**
+```js
+import { useState, useEffect } from "react";
+
+function ListaAttività() {
+  const [attività, setAttività] = useState([]);
+  const [nuovaAttività, setNuovaAttività] = useState("");
+  const [categoria, setCategoria] = useState("Tutte");
+  const [query, setQuery] = useState("");
+  const [modificaIndex, setModificaIndex] = useState(null);
+  const [modificaTesto, setModificaTesto] = useState("");
+
+  // 🚀 Recuperiamo le attività dal Local Storage al caricamento della pagina
+  useEffect(() => {
+    const datiSalvati = JSON.parse(localStorage.getItem("attività"));
+    if (datiSalvati) {
+      setAttività(datiSalvati);
+    }
+  }, []);
+
+  // 📝 Salviamo le attività ogni volta che cambiano
+  useEffect(() => {
+    localStorage.setItem("attività", JSON.stringify(attività));
+  }, [attività]);
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (nuovaAttività.trim() !== "") {
+      setAttività([...attività, { nome: nuovaAttività, categoria }]);
+      setNuovaAttività("");
+    }
+  }
+
+  function eliminaAttività(index) {
+    setAttività(attività.filter((_, i) => i !== index));
+  }
+
+  function avviaModifica(index) {
+    setModificaIndex(index);
+    setModificaTesto(attività[index].nome);
+  }
+
+  function confermaModifica(index) {
+    const attivitàAggiornate = [...attività];
+    attivitàAggiornate[index].nome = modificaTesto;
+    setAttività(attivitàAggiornate);
+    setModificaIndex(null);
+  }
+
+  const attivitàFiltrate = attività.filter(item =>
+    (categoria === "Tutte" || item.categoria === categoria) &&
+    item.nome.toLowerCase().includes(query.toLowerCase())
+  );
+
+  return (
+    <div>
+      <h3>Lista attività:</h3>
+
+      <input
+        type="text"
+        placeholder="Cerca attività..."
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+      />
+
+      <label>Filtra per categoria:</label>
+      <select onChange={(e) => setCategoria(e.target.value)}>
+        <option value="Tutte">Tutte</option>
+        <option value="Studio">Studio</option>
+        <option value="Salute">Salute</option>
+        <option value="Tempo libero">Tempo libero</option>
+      </select>
+
+      <ul>
+        {attivitàFiltrate.map((item, index) => (
+          <li key={index}>
+            {modificaIndex === index ? (
+              <>
+                <input
+                  type="text"
+                  value={modificaTesto}
+                  onChange={(e) => setModificaTesto(e.target.value)}
+                />
+                <button onClick={() => confermaModifica(index)}>✔️</button>
+                <button onClick={() => setModificaIndex(null)}>❌</button>
+              </>
+            ) : (
+              <>
+                {item.nome} ({item.categoria}) 
+                <button onClick={() => avviaModifica(index)}>✏️</button>
+                <button onClick={() => eliminaAttività(index)}>❌</button>
+              </>
+            )}
+          </li>
+        ))}
+      </ul>
+
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={nuovaAttività}
+          onChange={e => setNuovaAttività(e.target.value)}
+          placeholder="Scrivi una nuova attività..."
+        />
+        <button type="submit">Aggiungi attività</button>
+      </form>
+    </div>
+  );
+}
+
+export default ListaAttività;
+```
+
+---
+
+### **🚀 Cosa abbiamo aggiunto?**
+✅ **`useEffect(() => localStorage.setItem("attività", JSON.stringify(attività), [attività])`** → Salva le attività ogni volta che cambiano.  
+✅ **`useEffect(() => { setAttività(JSON.parse(localStorage.getItem("attività"))); }, [])`** → Recupera le attività salvate quando la pagina viene caricata.  
+✅ **Ora, anche se chiudi la scheda, le attività rimarranno salvate!** 🎯  
+
+---
+
+🔥 Vuoi aggiungere una funzione che permetta di **segnare le attività come completate** con un checkbox? 🚀
+
+# aggiunta di checkbox da spuntare
+
+Perfetto! Aggiungiamo la possibilità di **segnare le attività come completate** con un checkbox. ✅
+
+---
+
+### **🛠️ Passaggi per implementare il completamento delle attività**
+1️⃣ **Aggiungiamo un nuovo stato `completata` dentro ogni attività**.  
+2️⃣ **Usiamo un checkbox per cambiare `completata` da `true` a `false`**.  
+3️⃣ **Modifichiamo lo stile per evidenziare le attività completate**.  
+
+---
+
+### **📜 Codice aggiornato con attività completate**
+```js
+import { useState, useEffect } from "react";
+
+function ListaAttività() {
+  const [attività, setAttività] = useState([]);
+  const [nuovaAttività, setNuovaAttività] = useState("");
+  const [categoria, setCategoria] = useState("Tutte");
+  const [query, setQuery] = useState("");
+  const [modificaIndex, setModificaIndex] = useState(null);
+  const [modificaTesto, setModificaTesto] = useState("");
+
+  useEffect(() => {
+    const datiSalvati = JSON.parse(localStorage.getItem("attività"));
+    if (datiSalvati) {
+      setAttività(datiSalvati);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("attività", JSON.stringify(attività));
+  }, [attività]);
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (nuovaAttività.trim() !== "") {
+      setAttività([...attività, { nome: nuovaAttività, categoria, completata: false }]);
+      setNuovaAttività("");
+    }
+  }
+
+  function eliminaAttività(index) {
+    setAttività(attività.filter((_, i) => i !== index));
+  }
+
+  function avviaModifica(index) {
+    setModificaIndex(index);
+    setModificaTesto(attività[index].nome);
+  }
+
+  function confermaModifica(index) {
+    const attivitàAggiornate = [...attività];
+    attivitàAggiornate[index].nome = modificaTesto;
+    setAttività(attivitàAggiornate);
+    setModificaIndex(null);
+  }
+
+  function toggleCompletata(index) {
+    const attivitàAggiornate = [...attività];
+    attivitàAggiornate[index].completata = !attivitàAggiornate[index].completata;
+    setAttività(attivitàAggiornate);
+  }
+
+  const attivitàFiltrate = attività.filter(item =>
+    (categoria === "Tutte" || item.categoria === categoria) &&
+    item.nome.toLowerCase().includes(query.toLowerCase())
+  );
+
+  return (
+    <div>
+      <h3>Lista attività:</h3>
+
+      <input
+        type="text"
+        placeholder="Cerca attività..."
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+      />
+
+      <label>Filtra per categoria:</label>
+      <select onChange={(e) => setCategoria(e.target.value)}>
+        <option value="Tutte">Tutte</option>
+        <option value="Studio">Studio</option>
+        <option value="Salute">Salute</option>
+        <option value="Tempo libero">Tempo libero</option>
+      </select>
+
+      <ul>
+        {attivitàFiltrate.map((item, index) => (
+          <li key={index} style={{ textDecoration: item.completata ? "line-through" : "none", color: item.completata ? "gray" : "black" }}>
+            <input type="checkbox" checked={item.completata} onChange={() => toggleCompletata(index)} />
+            {modificaIndex === index ? (
+              <>
+                <input
+                  type="text"
+                  value={modificaTesto}
+                  onChange={(e) => setModificaTesto(e.target.value)}
+                />
+                <button onClick={() => confermaModifica(index)}>✔️</button>
+                <button onClick={() => setModificaIndex(null)}>❌</button>
+              </>
+            ) : (
+              <>
+                {item.nome} ({item.categoria}) 
+                <button onClick={() => avviaModifica(index)}>✏️</button>
+                <button onClick={() => eliminaAttività(index)}>❌</button>
+              </>
+            )}
+          </li>
+        ))}
+      </ul>
+
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={nuovaAttività}
+          onChange={e => setNuovaAttività(e.target.value)}
+          placeholder="Scrivi una nuova attività..."
+        />
+        <button type="submit">Aggiungi attività</button>
+      </form>
+    </div>
+  );
+}
+
+export default ListaAttività;
+```
+
+---
+
+### **🚀 Cosa abbiamo aggiunto?**
+✅ **`completata: false`** → Ogni attività ha un valore di completamento.  
+✅ **Checkbox accanto a ogni attività** → Permette di segnarla come completata/non completata.  
+✅ **`textDecoration: line-through`** → Le attività completate vengono barrate e diventano grigie.  
+✅ **Funzione `toggleCompletata(index)`** → Inverte lo stato della proprietà `completata`.  
+
+🔹 Ora puoi **aggiungere, cercare, filtrare, modificare, eliminare e completare** le attività! 🎯  
+
+Vuoi migliorare ancora l'app, magari mostrando **quante attività sono rimaste da completare**? 🚀
+
+# aggiunta conteggio attività non completate
+
+Ottimo! Aggiungiamo un contatore che mostra **quante attività sono ancora da completare**. 📊✅  
+
+---
+
+### **🛠️ Passaggi per implementare il contatore**
+1️⃣ **Creiamo una funzione che calcola il numero di attività ancora da completare**.  
+2️⃣ **Aggiorniamo il valore ogni volta che cambia lo stato delle attività**.  
+3️⃣ **Mostriamo il numero totale di attività incomplete sopra la lista**.  
+
+---
+
+### **📜 Codice aggiornato con contatore attività incomplete**
+```js
+import { useState, useEffect } from "react";
+
+function ListaAttività() {
+  const [attività, setAttività] = useState([]);
+  const [nuovaAttività, setNuovaAttività] = useState("");
+  const [categoria, setCategoria] = useState("Tutte");
+  const [query, setQuery] = useState("");
+  const [modificaIndex, setModificaIndex] = useState(null);
+  const [modificaTesto, setModificaTesto] = useState("");
+
+  useEffect(() => {
+    const datiSalvati = JSON.parse(localStorage.getItem("attività"));
+    if (datiSalvati) {
+      setAttività(datiSalvati);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("attività", JSON.stringify(attività));
+  }, [attività]);
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (nuovaAttività.trim() !== "") {
+      setAttività([...attività, { nome: nuovaAttività, categoria, completata: false }]);
+      setNuovaAttività("");
+    }
+  }
+
+  function eliminaAttività(index) {
+    setAttività(attività.filter((_, i) => i !== index));
+  }
+
+  function avviaModifica(index) {
+    setModificaIndex(index);
+    setModificaTesto(attività[index].nome);
+  }
+
+  function confermaModifica(index) {
+    const attivitàAggiornate = [...attività];
+    attivitàAggiornate[index].nome = modificaTesto;
+    setAttività(attivitàAggiornate);
+    setModificaIndex(null);
+  }
+
+  function toggleCompletata(index) {
+    const attivitàAggiornate = [...attività];
+    attivitàAggiornate[index].completata = !attivitàAggiornate[index].completata;
+    setAttività(attivitàAggiornate);
+  }
+
+  // 🚀 Calcola quante attività non sono ancora completate
+  const attivitàIncomplete = attività.filter(item => !item.completata).length;
+
+  const attivitàFiltrate = attività.filter(item =>
+    (categoria === "Tutte" || item.categoria === categoria) &&
+    item.nome.toLowerCase().includes(query.toLowerCase())
+  );
+
+  return (
+    <div>
+      <h3>Lista attività:</h3>
+
+      {/* Mostra il numero di attività ancora da completare */}
+      <p>Attività ancora da completare: <strong>{attivitàIncomplete}</strong></p>
+
+      <input
+        type="text"
+        placeholder="Cerca attività..."
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+      />
+
+      <label>Filtra per categoria:</label>
+      <select onChange={(e) => setCategoria(e.target.value)}>
+        <option value="Tutte">Tutte</option>
+        <option value="Studio">Studio</option>
+        <option value="Salute">Salute</option>
+        <option value="Tempo libero">Tempo libero</option>
+      </select>
+
+      <ul>
+        {attivitàFiltrate.map((item, index) => (
+          <li key={index} style={{ textDecoration: item.completata ? "line-through" : "none", color: item.completata ? "gray" : "black" }}>
+            <input type="checkbox" checked={item.completata} onChange={() => toggleCompletata(index)} />
+            {modificaIndex === index ? (
+              <>
+                <input
+                  type="text"
+                  value={modificaTesto}
+                  onChange={(e) => setModificaTesto(e.target.value)}
+                />
+                <button onClick={() => confermaModifica(index)}>✔️</button>
+                <button onClick={() => setModificaIndex(null)}>❌</button>
+              </>
+            ) : (
+              <>
+                {item.nome} ({item.categoria}) 
+                <button onClick={() => avviaModifica(index)}>✏️</button>
+                <button onClick={() => eliminaAttività(index)}>❌</button>
+              </>
+            )}
+          </li>
+        ))}
+      </ul>
+
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={nuovaAttività}
+          onChange={e => setNuovaAttività(e.target.value)}
+          placeholder="Scrivi una nuova attività..."
+        />
+        <button type="submit">Aggiungi attività</button>
+      </form>
+    </div>
+  );
+}
+
+export default ListaAttività;
+```
+
+---
+
+### **🚀 Cosa abbiamo aggiunto?**
+✅ **Funzione `attivitàIncomplete`** → Conta le attività **non completate**.  
+✅ **Mostra il numero di attività incomplete sopra la lista**.  
+✅ **Si aggiorna automaticamente quando un'attività viene completata o eliminata**.  
+
+🔹 Ora puoi **sapere quante attività devi ancora fare** con un semplice contatore! 🎯  
+
+🔥 Vuoi migliorare ancora l'app, magari permettendo agli utenti di **riordinare le attività manualmente**? 🚀  
