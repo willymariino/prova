@@ -930,7 +930,7 @@ export default ListaAttività;
 🔥 Vuoi migliorare ancora l'app, magari permettendo agli utenti di **riordinare le attività manualmente**? 🚀  
 
 
-# trasportare l'app su mbile con react native
+# trasportare l'app su mobile con react native
 
 
 Ottima domanda! Se vuoi **trasformare questa app in un'app mobile** con **React Native**, dovresti adattare il codice per funzionare su dispositivi mobili. 🚀  
