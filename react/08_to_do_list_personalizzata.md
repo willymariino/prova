@@ -928,3 +928,125 @@ export default ListaAttività;
 🔹 Ora puoi **sapere quante attività devi ancora fare** con un semplice contatore! 🎯  
 
 🔥 Vuoi migliorare ancora l'app, magari permettendo agli utenti di **riordinare le attività manualmente**? 🚀  
+
+# traspoertare l'app su mbile con react native?
+Ottima domanda! Se vuoi **trasformare questa app in un'app mobile** con **React Native**, dovresti adattare il codice per funzionare su dispositivi mobili. 🚀  
+
+---
+
+### **🛠️ Passaggi per la conversione in React Native**
+1️⃣ **Installare React Native** se non lo hai già:
+   ```sh
+   npx react-native init ListaAttivitàApp
+   cd ListaAttivitàApp
+   ```
+2️⃣ **Sostituire i componenti web (`div`, `form`, `button`, `ul`, `li`, `input`) con componenti React Native**:
+   - Usa `<View>` invece di `<div>`.
+   - Usa `<Text>` invece di `<p>` o `<label>`.
+   - Usa `<TextInput>` invece di `<input>`.
+   - Usa `<TouchableOpacity>` o `<Pressable>` invece di `<button>`.
+3️⃣ **Gestire lo stato (`useState`, `useEffect`) normalmente**.
+4️⃣ **Utilizzare AsyncStorage invece di localStorage per salvare i dati**.
+
+---
+
+### **📜 Esempio di codice React Native**
+Ecco una versione **semplificata** dell'app in React Native:  
+
+```js
+import React, { useState, useEffect } from 'react';
+import { View, Text, TextInput, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+export default function ListaAttività() {
+  const [attività, setAttività] = useState([]);
+  const [nuovaAttività, setNuovaAttività] = useState("");
+
+  useEffect(() => {
+    const caricaDati = async () => {
+      const datiSalvati = await AsyncStorage.getItem("attività");
+      if (datiSalvati) {
+        setAttività(JSON.parse(datiSalvati));
+      }
+    };
+    caricaDati();
+  }, []);
+
+  useEffect(() => {
+    AsyncStorage.setItem("attività", JSON.stringify(attività));
+  }, [attività]);
+
+  function aggiungiAttività() {
+    if (nuovaAttività.trim() !== "") {
+      setAttività([...attività, { nome: nuovaAttività, completata: false }]);
+      setNuovaAttività("");
+    }
+  }
+
+  function eliminaAttività(index) {
+    setAttività(attività.filter((_, i) => i !== index));
+  }
+
+  function toggleCompletata(index) {
+    const nuovaLista = [...attività];
+    nuovaLista[index].completata = !nuovaLista[index].completata;
+    setAttività(nuovaLista);
+  }
+
+  return (
+    <View style={styles.container}>
+      <Text style={styles.titolo}>Lista Attività</Text>
+
+      <TextInput
+        style={styles.input}
+        placeholder="Scrivi una nuova attività..."
+        value={nuovaAttività}
+        onChangeText={setNuovaAttività}
+      />
+
+      <TouchableOpacity style={styles.bottone} onPress={aggiungiAttività}>
+        <Text style={styles.bottoneTesto}>Aggiungi</Text>
+      </TouchableOpacity>
+
+      <FlatList
+        data={attività}
+        keyExtractor={(item, index) => index.toString()}
+        renderItem={({ item, index }) => (
+          <View style={styles.item}>
+            <Text style={item.completata ? styles.completato : styles.testo}>{item.nome}</Text>
+            <TouchableOpacity onPress={() => toggleCompletata(index)}>
+              <Text>{item.completata ? "✅" : "⭕"}</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => eliminaAttività(index)}>
+              <Text>❌</Text>
+            </TouchableOpacity>
+          </View>
+        )}
+      />
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: { padding: 20 },
+  titolo: { fontSize: 24, fontWeight: 'bold', marginBottom: 10 },
+  input: { borderWidth: 1, padding: 10, marginBottom: 10 },
+  bottone: { backgroundColor: '#007AFF', padding: 10, borderRadius: 5 },
+  bottoneTesto: { color: 'white', textAlign: 'center' },
+  item: { flexDirection: 'row', justifyContent: 'space-between', padding: 10, borderBottomWidth: 1 },
+  testo: { fontSize: 18 },
+  completato: { fontSize: 18, textDecorationLine: 'line-through', color: 'gray' }
+});
+```
+
+---
+
+### **🚀 Cosa è cambiato rispetto a React per il web?**
+✅ **Componenti mobile (`View`, `Text`, `TextInput`, `FlatList`, `TouchableOpacity`)** sostituiscono i componenti HTML.  
+✅ **`AsyncStorage`** salva i dati invece di `localStorage`.  
+✅ **`FlatList`** è più efficiente per liste rispetto a `.map()`.  
+✅ **`StyleSheet.create()`** viene usato invece del CSS classico.  
+
+🔹 **Ora hai un'app mobile pronta per essere testata su Android/iOS!** 🎯  
+
+🔥 Vuoi aggiungere un'animazione per migliorare l'esperienza utente su mobile? 🚀
