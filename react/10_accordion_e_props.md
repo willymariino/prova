@@ -61,3 +61,37 @@ Se avessi usato solo `{category}`, React non lo riconoscerebbe, perché la varia
 
 ### **💡 Vuoi personalizzare ulteriormente la gestione dell’accordion?**
 Potrei aiutarti a farlo aprire **automaticamente** in alcune condizioni o **chiuderlo quando si clicca fuori**! 😃
+
+Ottima osservazione! 🚀 Il motivo per cui **`<RelatedProducts category={category_name} />`** utilizza proprio `category_name` è che nel tuo componente `RelatedProducts.jsx`, il filtro dei prodotti correlati si basa sulla **categoria** del prodotto attuale.
+
+### **🔹 Perché proprio `category_name` e non altro?**
+Nel tuo `SingleProductPage.jsx`, hai estratto diversi valori da `productSlug`. Tutti questi sono dettagli del prodotto attuale, ma quello **più utile** per trovare prodotti simili è `category_name`.  
+
+Quando passi **`category_name`** a `RelatedProducts`, stai dicendo:
+👉 "Mostra i prodotti che appartengono alla stessa categoria di questo prodotto".  
+Se invece passassi `name`, `brand`, o `price`, l'algoritmo dei prodotti correlati cercherebbe per **nome del prodotto**, **marca**, o **prezzo**—ma non troverebbe una **vera correlazione di categoria**.  
+
+### **🔹 Dove viene usato `category_name` in `RelatedProducts.jsx`?**
+Nel componente `RelatedProducts.jsx`, `category_name` viene passato come prop e usato per filtrare i prodotti:
+
+```jsx
+useEffect(() => {
+  axios.get(`http://127.0.0.1:3000/products?category=${category}`)
+    .then((res) => {
+      setRelatedProducts(res.data.products);
+    })
+    .catch((error) => {
+      console.error("Errore nel recupero dei prodotti correlati:", error);
+    });
+}, [category]);
+```
+
+Vedi? La categoria (`category`) viene usata per effettuare una chiamata API e recuperare solo i prodotti con lo stesso valore `category_name`.
+
+### **💡 Vuoi aggiungere più filtri ai prodotti correlati?**
+Posso aiutarti a migliorare il sistema! Ad esempio:
+✅ Filtrare i prodotti correlati **per brand** oltre alla categoria  
+✅ Mostrare solo quelli **in sconto**  
+✅ Ordinarli per **popolarità**  
+
+Dimmi cosa preferisci e lo ottimizziamo insieme! 😊🚀
