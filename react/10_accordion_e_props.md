@@ -36,6 +36,8 @@ L'elemento che si espande è collegato tramite **id**:
 Se vuoi gestire **manualmente** l'apertura e la chiusura con **React**, possiamo usare uno **state** e modificare la classe dell’accordion dinamicamente! 🚀
 Fammi sapere se vuoi questa personalizzazione. 😊
 
+__________
+
 Ottima domanda! 🚀 Ti spiego tutto nel dettaglio.
 
 ### **🔹 1. Cosa significano gli attributi nell'`<button>`**
