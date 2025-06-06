@@ -2,10 +2,16 @@ Fourth Wing (The Empyrean, #1)
 Yarros, Rebecca *
 
 Iron Flame (The Empyrean, #2)
-Yarros, Rebecca *
+Yarros, Rebecca *S
   
 Onyx Storm (The Empyrean, #3)
 Yarros, Rebecca *
+
+La stagione delle ossa. The Bone Season - Libro I
+Shannon, Samantha *
+
+Un giorno di notte cadente
+Shannon, Samantha *
 
 A Dark and Drowning Tide
 Saft, Allison *

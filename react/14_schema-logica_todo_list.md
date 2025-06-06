@@ -41,6 +41,149 @@ Esempio:
 - **Input:** Campo di testo per inserire nuove attività.
 - **Gestione evento:** `onChange` per aggiornare `newTask`.
 - **Aggiunta:** Bottone con `onClick` per aggiornare `tasks`.
+  
+  ```jsx
+  <input
+    type="text"
+    value={newTask}
+    onChange={(e) => setNewTask(e.target.value)}
+  />
+  ```
+- **Pulsante di aggiunta:**  
+  ```jsx
+  <button onClick={handleAddTask}>Aggiungi</button>
+  ```
+- **Funzione di gestione:**  
+  ```jsx
+  const handleAddTask = () => {
+    if (newTask.trim() === '') return;
+    setTasks([...tasks, { text: newTask, completed: false }]);
+    setNewTask('');
+  };
+  ```
+
+---
+
+#### **4️⃣ Visualizzare la lista**
+- Itera sui task con `.map()`:  
+  ```jsx
+  {tasks.map((task, index) => (
+    <ToDoItem key={index} task={task} onDelete={() => handleDeleteTask(index)} />
+  ))}
+  ```
+
+---
+
+#### **5️⃣ Rimuovere un'attività**
+- Pulsante accanto a ogni task:
+  ```jsx
+  <button onClick={() => handleDeleteTask(index)}>❌</button>
+  ```
+- **Funzione di gestione:**  
+  ```jsx
+  const handleDeleteTask = (index) => {
+    setTasks(tasks.filter((_, i) => i !== index));
+  };
+  ```
+
+---
+
+#### **6️⃣ Segnare un'attività come completata**
+- **Checkbox per aggiornare lo stato:**  
+  ```jsx
+  <input
+    type="checkbox"
+    checked={task.completed}
+    onChange={() => handleToggleTask(index)}
+  />
+  ```
+- **Funzione di gestione:**  
+  ```jsx
+  const handleToggleTask = (index) => {
+    const updatedTasks = [...tasks];
+    updatedTasks[index].completed = !updatedTasks[index].completed;
+    setTasks(updatedTasks);
+  };
+  ```
+
+---
+
+#### **7️⃣ Styling**
+- **CSS per le attività completate:**  
+  ```css
+  .completed {
+    text-decoration: line-through;
+    color: gray;
+  }
+  ```
+
+---
+
+#### **8️⃣ Persistenza dei dati**
+- **Salvataggio con localStorage:**  
+  ```jsx
+  useEffect(() => {
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+  }, [tasks]);
+  ```
+
+---
+
+#### **9️⃣ Componentizzazione avanzata**
+- **Separazione dei componenti per riusabilità:**  
+  ```jsx
+  <ToDoList tasks={tasks} onDelete={handleDeleteTask} onToggle={handleToggleTask} />
+  ```
+---
+
+#### **🔟 Testing con Jest e React Testing Library**
+- Test per la gestione degli eventi:
+  ```jsx
+  test('Aggiunta di un task', () => {
+    render(<App />);
+    const input = screen.getByRole('textbox');
+    fireEvent.change(input, { target: { value: 'Nuovo task' } });
+    fireEvent.click(screen.getByText('Aggiungi'));
+    expect(screen.getByText('Nuovo task')).toBeInTheDocument();
+  });
+  ```
+
+---
+
+### 🛠 **Come Contribuire**
+Se vuoi contribuire al progetto, segui questi passi:
+
+1. **Forka il repository** su GitHub.
+2. **Clona il repository**:
+   ```bash
+   git clone https://github.com/tuo-username/todo-list.git
+   cd todo-list
+   ```
+3. **Crea un branch per la tua modifica**:
+   ```bash
+   git checkout -b feature-miglioramento-UX
+   ```
+4. **Apporta le modifiche** al codice e **committa**:
+   ```bash
+   git add .
+   git commit -m "Migliorata l'UX della lista"
+   ```
+5. **Push del branch**:
+   ```bash
+   git push origin feature-miglioramento-UX
+   ```
+6. **Apri una Pull Request** e descrivi le modifiche fatte.
+
+💡 **Linee guida**
+- Mantieni il codice leggibile e ben documentato.
+- Segui il formato dei commit standard (es. `feat: Aggiunta gestione errore input`).
+- Testa le tue modifiche prima di inviare la PR.
+
+---
+
+Con questa versione il file sarà ben strutturato e facilmente leggibile una volta pushato su GitHub! 😃 Ti piace così? Vuoi aggiungere altri dettagli? 🚀
+
+
 
 #### **4️⃣ Visualizzare la lista**
 Usa il metodo `.map()` per iterare sull'array tasks e renderizzare ogni attività come componente o elemento HTML.
