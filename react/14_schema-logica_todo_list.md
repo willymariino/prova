@@ -27,9 +27,9 @@ ToDoItem.jsx: Componente per ogni elemento della lista.
 Usa lo state per gestire i dati della lista:
 Un array per memorizzare le attività (tasks).
 Una stringa per il valore dell'input (newTask).
-Esempio:
 
-esempio
+
+Esempio:
 - Usa `useState` per gestire i dati:
   ```jsx
   const [tasks, setTasks] = useState([]);
