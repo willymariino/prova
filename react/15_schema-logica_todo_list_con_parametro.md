@@ -16,8 +16,9 @@
 #### **2️⃣ Stato dell'applicazione**
 - Lo stato è **interno al componente**, e parte con un **array vuoto**:
   ```jsx
-  const [attività, setAttività] = useState([]); // ⬅️ Stato locale dell'app
-  const [input, setInput] = useState("");       // ⬅️ Stato per l'input
+  const [task, setTask] = useState([])// ⬅️ Stato locale dell'app
+  const [newTask, setNewTask] = useState("") // ⬅️ Stato per ripulire il campo di input 
+  const [error, setError] = useState("") // stato per gestire il messaggio di errore
   ```
 
 ---
@@ -27,34 +28,48 @@
   ```jsx
   const aggiungiAttività = (valore) => {
     if (valore.trim() !== "") {
-      setAttività([...attività, valore]); // ⬅️ Aggiorna lo stato interno
+      setTask([...task, valore]) // ⬅️ Aggiorna lo stato interno
     }
-  };
+  }
   ```
 - **Evento `onSubmit` per il form:**  
   ```jsx
   const handleSubmit = (e) => {
-    e.preventDefault();
-    aggiungiAttività(input); // ⬅️ Passiamo il valore come parametro
-    setInput(""); // ⬅️ Reset input dopo l'aggiunta
-  };
+    e.preventDefault()
+    if (newTask.trim() === ""){
+        setError("il campo input non deve essere vuoto")
+        return
+    }
+
+   // Se newTask è vuoto o contiene solo spazi, mostra un errore e blocca l'invio
+
+
+    aggiungiAttività(newTask) // ⬅️ Passiamo il valore come parametro
+    setNewTask("") // ⬅️ Reset input dopo l'aggiunta
+    setError("") // ⬅️ reset messaggio di errore dopo l'aggiunta dell'input
+
+    // Se il valore è valido, aggiunge l'attività e resetta l'errore.
+
+  }
   ```
 
   - **Input per l'utente:**  
  Sì, idealmente **l'`input` e il `button` dovrebbero essere dentro un `<form>`** per una corretta gestione dell'invio del dato. Il motivo principale è che il **comportamento predefinito di un form** permette di inviare i dati quando si preme "Enter" nella casella di input, rendendo l'esperienza più naturale per l'utente.
 
-Ecco come dovresti strutturarlo:
-
 ```jsx
 <form onSubmit={handleSubmit}>
   <input
     type="text"
-    value={input}
-    onChange={(e) => setInput(e.target.value)}
+    value={newTask}
+    onChange={(e) => setNewTask(e.target.value)}
     placeholder="Scrivi attività..."
   />
   <button type="submit">Aggiungi</button>
+  {error && <p style {{color: "red"}}>{error}</p>} 
 </form>
+// Questa sintassi sfrutta l'operatore AND logico (&&), che in React viene spesso usato per rendere condizionatamente un elemento.
+// Se error contiene una stringa, la condizione sarà true e il <p> verrà visualizzato.
+// Se error è una stringa vuota (""), la condizione sarà false e il <p> non verrà renderizzato.
 ```
 
 ### 🔹 **Perché usare `<form>`?**
@@ -70,7 +85,7 @@ Se invece non usassi `<form>`, dovresti gestire manualmente l'invio dell'input, 
 - Itera sull'array `attività`, che viene aggiornato localmente:
   ```jsx
   <ul>
-    {attività.map((item, i) => (
+    {task.map((item, i) => (
       <li key={i}>{item}</li>
     ))}
   </ul>
@@ -86,8 +101,8 @@ Se invece non usassi `<form>`, dovresti gestire manualmente l'invio dell'input, 
 - **Funzione per eliminare un'attività:**  
   ```jsx
   const handleDeleteTask = (index) => {
-    setAttività(attività.filter((_, i) => i !== index));
-  };
+    setTask(task.filter((_, i) => i !== index))
+  }
   ```
 
 ---
@@ -96,8 +111,8 @@ Se invece non usassi `<form>`, dovresti gestire manualmente l'invio dell'input, 
 - **CSS per le attività:**  
   ```css
   .completed {
-    text-decoration: line-through;
-    color: gray;
+    text-decoration: line-through
+    color: gray
   }
   ```
 
@@ -107,8 +122,8 @@ Se invece non usassi `<form>`, dovresti gestire manualmente l'invio dell'input, 
 - **Salvataggio su `localStorage` per mantenere i task tra i refresh:**  
   ```jsx
   useEffect(() => {
-    localStorage.setItem('tasks', JSON.stringify(attività));
-  }, [attività]);
+    localStorage.setItem('tasks', JSON.stringify(task))
+  }, [task])
   ```
 
 ---
@@ -117,12 +132,12 @@ Se invece non usassi `<form>`, dovresti gestire manualmente l'invio dell'input, 
 - **Verifica aggiunta di un task:**  
   ```jsx
   test('Aggiunta di un task', () => {
-    render(<ListaAttivitàConParametro />);
-    const input = screen.getByRole('textbox');
-    fireEvent.change(input, { target: { value: 'Nuovo task' } });
-    fireEvent.click(screen.getByText('Aggiungi'));
-    expect(screen.getByText('Nuovo task')).toBeInTheDocument();
-  });
+    render(<ListaAttivitàConParametro />)
+    const input = screen.getByRole('textbox')
+    fireEvent.change(newTask, { target: { value: 'Nuovo task' } })
+    fireEvent.click(screen.getByText('Aggiungi'))
+    expect(screen.getByText('Nuovo task')).toBeInTheDocument()
+  })
   ```
 
  ### Differenze rispetto alla versione con stato interno
@@ -157,11 +172,11 @@ Se invece non usassi `<form>`, dovresti gestire manualmente l'invio dell'input, 
 - Lo stato **mantiene solo le attività aggiunte dall'utente**, senza gestire un array interno.
 
 ```jsx
-import { useState } from "react";
+import { useState } from "react"
 
 export default function ListaAttivitàConParametro({ iniziali = [] }) {
-  const [attività, setAttività] = useState(iniziali); // ⬅️ Usa il parametro passato
-  const [input, setInput] = useState(""); // ⬅️ Stato solo per l'input
+  const [attività, setAttività] = useState(iniziali) // ⬅️ Usa il parametro passato
+  const [input, setInput] = useState("") // ⬅️ Stato solo per l'input
 ```
 
 ---
@@ -184,17 +199,17 @@ export default function ListaAttivitàConParametro({ iniziali = [] }) {
   ```jsx
   const aggiungiAttività = (valore) => {
     if (valore.trim() !== "") {
-      setAttività([...attività, valore]); // ⬅️ Aggiunge il valore al parametro iniziali
+      setAttività([...attività, valore]) // ⬅️ Aggiunge il valore al parametro iniziali
     }
-  };
+  }
   ```
 - **Evento `onSubmit` per il form:**  
   ```jsx
   const handleSubmit = (e) => {
-    e.preventDefault();
-    aggiungiAttività(input); // ⬅️ Passiamo il valore come parametro
-    setInput(""); // ⬅️ Reset input dopo l'aggiunta
-  };
+    e.preventDefault()
+    aggiungiAttività(input) // ⬅️ Passiamo il valore come parametro
+    setInput("") // ⬅️ Reset input dopo l'aggiunta
+  }
   ```
 
 ---
@@ -219,8 +234,8 @@ export default function ListaAttivitàConParametro({ iniziali = [] }) {
 - **Funzione di gestione per eliminare:**  
   ```jsx
   const handleDeleteTask = (index) => {
-    setAttività(attività.filter((_, i) => i !== index));
-  };
+    setAttività(attività.filter((_, i) => i !== index))
+  }
   ```
 
 ---
@@ -237,10 +252,10 @@ export default function ListaAttivitàConParametro({ iniziali = [] }) {
 - **Funzione di gestione:**  
   ```jsx
   const handleToggleTask = (index) => {
-    const updatedTasks = [...attività];
-    updatedTasks[index].completed = !updatedTasks[index].completed;
-    setAttività(updatedTasks);
-  };
+    const updatedTasks = [...attività]
+    updatedTasks[index].completed = !updatedTasks[index].completed
+    setAttività(updatedTasks)
+  }
   ```
 
 ---
@@ -249,8 +264,8 @@ export default function ListaAttivitàConParametro({ iniziali = [] }) {
 - **CSS per le attività completate:**  
   ```css
   .completed {
-    text-decoration: line-through;
-    color: gray;
+    text-decoration: line-through
+    color: gray
   }
   ```
 
@@ -260,8 +275,8 @@ export default function ListaAttivitàConParametro({ iniziali = [] }) {
 - **Salvataggio con localStorage:**  
   ```jsx
   useEffect(() => {
-    localStorage.setItem('tasks', JSON.stringify(attività));
-  }, [attività]);
+    localStorage.setItem('tasks', JSON.stringify(attività))
+  }, [attività])
   ```
 
 ---
@@ -278,12 +293,12 @@ export default function ListaAttivitàConParametro({ iniziali = [] }) {
 - Test per la gestione degli eventi:
   ```jsx
   test('Aggiunta di un task', () => {
-    render(<ListaAttivitàConParametro iniziali={[]} />);
-    const input = screen.getByRole('textbox');
-    fireEvent.change(input, { target: { value: 'Nuovo task' } });
-    fireEvent.click(screen.getByText('Aggiungi'));
-    expect(screen.getByText('Nuovo task')).toBeInTheDocument();
-  });
+    render(<ListaAttivitàConParametro iniziali={[]} />)
+    const input = screen.getByRole('textbox')
+    fireEvent.change(input, { target: { value: 'Nuovo task' } })
+    fireEvent.click(screen.getByText('Aggiungi'))
+    expect(screen.getByText('Nuovo task')).toBeInTheDocument()
+  })
   ```
 ### 🚀 **Vantaggi di questa versione**
 ✅ **Migliore modularità:** separazione netta tra stato interno e dati passati come parametro.  
