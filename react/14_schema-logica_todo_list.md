@@ -23,13 +23,13 @@ App.jsx: Componente principale.
 ToDoList.jsx: Componente per la lista.
 ToDoItem.jsx: Componente per ogni elemento della lista.
 
-2. Stato dell'applicazione
+#### **2️⃣ Stato dell'applicazione**
 Usa lo state per gestire i dati della lista:
 Un array per memorizzare le attività (tasks).
 Una stringa per il valore dell'input (newTask).
 Esempio:
 
-#### **2️⃣ Stato dell'applicazione**
+esempio
 - Usa `useState` per gestire i dati:
   ```jsx
   const [tasks, setTasks] = useState([]);
