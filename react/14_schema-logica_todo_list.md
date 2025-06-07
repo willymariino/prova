@@ -58,7 +58,7 @@ Esempio:
     value={newTask}
     onChange={(e) => setNewTask(e.target.value)}
   />
-
+```
   **Pulsante di aggiunta**  
   ```jsx
   <button onClick={handleAddTask}>Aggiungi</button>
