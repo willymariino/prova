@@ -54,7 +54,7 @@
   ```
 
   - **Input per l'utente:**  
- Sì, idealmente **l'`input` e il `button` dovrebbero essere dentro un `<form>`**
+ Sì, idealmente **`<input>` e il `<button>` dovrebbero essere dentro un `<form>`**
  per una corretta gestione dell'invio del dato. Il motivo principale è che
  il **comportamento predefinito di un form** permette di inviare i dati quando si preme 
 "Enter" nella casella di input, rendendo l'esperienza più naturale per l'utente.
