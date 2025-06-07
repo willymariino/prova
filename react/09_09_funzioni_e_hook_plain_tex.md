@@ -1,7 +1,3 @@
-Certo! Ecco il riassunto in **plain text**, senza formattazione speciale, così puoi copiarlo facilmente nelle tue note.
-
----
-
 **RIASSUNTO: Funzioni in React e il problema con useNavigate()**  
 
 1. **Differenza tra Funzioni Normali e Hook**  

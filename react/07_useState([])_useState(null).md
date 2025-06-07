@@ -1,4 +1,4 @@
-Ottima domanda! La differenza tra `useState([])` e `useState(null)` dipende dal **tipo di dato** che vogliamo gestire.
+La differenza tra `useState([])` e `useState(null)` dipende dal **tipo di dato** che vogliamo gestire.
 
 ---
 

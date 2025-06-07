@@ -1,4 +1,4 @@
-Ecco la struttura del componente **OrderConfirmationModal**, che puoi importare in `SingleProductPage` per mostrare il pop-up quando l'utente clicca su **"Completa Ordine"**.
+struttura del componente **OrderConfirmationModal**, da importare in `SingleProductPage` per mostrare il pop-up quando l'utente clicca su **"Completa Ordine"**.
 
 ### **📌 Struttura del componente**
 ✅ **Gestisce lo stato di visibilità**  
@@ -110,9 +110,7 @@ function SingleProductPage() {
 ✅ L'overlay scuro blocca interazioni con la pagina.  
 ✅ Cliccando **"✖"**, il pop-up si chiude.
 
-Ora puoi testarlo e personalizzarlo! Vuoi aggiungere un timer per chiuderlo automaticamente dopo qualche secondo? 🚀
-
-Perfetto! Facciamo un **riassunto completo** del componente **OrderConfirmationModal**, della sua logica, dell'importazione, e della soluzione al problema. 🚀
+ ## **riassunto completo** del componente **OrderConfirmationModal**, della sua logica, dell'importazione, e della soluzione al problema. 🚀
 
 ---
 
@@ -199,15 +197,9 @@ function CheckOutForm({ amount }) {
 ```
 🔹 **Ora il pop-up si attiva correttamente e si chiude quando l'utente clicca "✖".** 🎉
 
----
-
-Ora il **pop-up è completamente funzionante!** 🚀 Vuoi aggiungere un effetto di **transizione o un timer per chiuderlo automaticamente**? 😃
-
---------
-
 # logica 2
 
-Ottima domanda! Analizziamo **tre concetti fondamentali** della logica del componente:
+Analizziamo **tre concetti fondamentali** della logica del componente:
 
 ### **📌 1️⃣ Perché usiamo `const [isModalOpen, setIsModalOpen]`?**
 Questa è la **gestione dello stato** con `useState`.  
@@ -267,4 +259,3 @@ Il componente `OrderConfirmationModal` ha una **prop** chiamata `isOpen`, che co
 ✅ `Math.floor(Math.random() * 1000000)` → **Genera un codice ordine casuale**.  
 ✅ `isOpen={isModalOpen}` → **Passa lo stato al componente modale per mostrarlo o nasconderlo**.  
 
-Ora ti è più chiaro? Vuoi aggiungere un effetto di transizione o un timer per chiuderlo automaticamente? 🚀

@@ -1,7 +1,3 @@
-Assolutamente! Ecco un **riassunto chiaro e utile** sulle funzioni in React, con particolare attenzione al problema che hai avuto con `useNavigate()`.
-
----
-
 # 🔹 **RIASSUNTO: Funzioni in React e il problema con `useNavigate()`**
 ## 📌 **1. Differenza tra Funzioni Normali e Hook**
 In React esistono **due tipi di funzioni principali**:
