@@ -2,15 +2,15 @@ Fourth Wing (The Empyrean, #1)
 Yarros, Rebecca  
 
 Iron Flame (The Empyrean, #2)
-Yarros, Rebecca  S
+Yarros, Rebecca  
   
 Onyx Storm (The Empyrean, #3)
 Yarros, Rebecca  
 
-La stagione delle ossa. The Bone Season - Libro I
+The Bone Season (The Bone Season, #1)
 Shannon, Samantha  
 
-Un giorno di notte cadente
+A Day of Fallen Night (The Roots of Chaos, #0)
 Shannon, Samantha  
 
 A Dark and Drowning Tide
@@ -28,10 +28,10 @@ Roberts, Lauren
 Reckless (The Powerless Trilogy, #2)
 Roberts, Lauren  
 
-Fearless. Coraggio e destino (Powerless, #3)
+Fearless (The Powerless Trilogy, #3)
 Roberts, Lauren  
 
-A study in drowning: La storia sommersa
+A study in drowning (A Study in Drowning, #1)
 Reid, Ava  
 
 When the Moon Hatched (Moonfall, #1)
@@ -70,7 +70,7 @@ Gillig, Rachel
 Two Twisted Crowns (The Shepherd King, #2)
 Gillig, Rachel
 
-Città di Ossa (Shadowhunters #1)
+City of Bones (The Mortal Instruments, #1)
 Clare, Cassandra  
 
 City of Ashes (The Mortal Instruments, #2)
@@ -88,10 +88,10 @@ Clare, Cassandra
 City of Heavenly Fire (The Mortal Instruments, #6)
 Clare, Cassandra  
 
-Signora della mezzanotte
+Signora della mezzanotte (The Dark Artifices, #1)
 Clare, Cassandra  
 
-Signore delle Ombre
+Signore delle Ombre (The Dark Artifices, #2)
 Clare, Cassandra  
 
 Chain of Gold (The Last Hours, #1)
@@ -103,7 +103,7 @@ Broadbent, Carissa
 The Ashes & the Star-Cursed King (Crowns of Nyaxia, #2)
 Broadbent, Carissa  
 
-Tenebre e ossa
+Shadow and Bone (The Shadow and Bone Trilogy, #1)
 Bardugo, Leigh  
 
 Siege and Storm (The Shadow and Bone Trilogy, #2)
@@ -121,5 +121,5 @@ Bardugo, Leigh
 Legends & Lattes (Legends & Lattes, #1)
 Baldree, Travis  
 
-Il regno del destino
+Fate Breaker (Realm Breaker, #3)
 Aveyard, Victoria  
