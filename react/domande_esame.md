@@ -35,7 +35,7 @@ Utilizzerei il tag <nav> per racchiudere una barra di navigazione principale, po
     color: red
 }
 
-// 4. Quale proprietà CSS permette di creare uno spazio di 20px tra due colonne di un layout flexbox?
+ 4. Quale proprietà CSS permette di creare uno spazio di 20px tra due colonne di un layout flexbox?
 
 Risposta corretta:
 La proprietà gap in CSS consente di inserire spazi tra le colonne e le righe di un layout Flexbox o Grid. Per creare uno spazio di 20px tra due colonne in un layout Flexbox, si utilizza:
@@ -54,7 +54,7 @@ La proprietà gap è supportata sia per Flexbox che per Grid.
 
 numeri.map(numero => numero * 2 )
 
-// 6. In JavaScript, cosa restituisce l'espressione '5' + 3 e perché?
+6. In JavaScript, cosa restituisce l'espressione '5' + 3 e perché?
 
 restituisce "53" perchè il 5 è una stringa mentre 3 è un numero, e se metti una stringa insieme ad un numero il ridultato di default di javascript è una stringa.
 
@@ -70,7 +70,7 @@ La coercizione di tipo è automatica e può portare a risultati inattesi se non 
 Se hai bisogno di ulteriori esempi o spiegazioni, fammi sapere!
 
 
-// 7. Scrivi una funzione JavaScript che accetta una stringa e restituisce true se la stringa è palindroma, false altrimenti.
+7. Scrivi una funzione JavaScript che accetta una stringa e restituisce true se la stringa è palindroma, false altrimenti.
 
 function isPalindrome(valore){
 if valore.reverse === !valore {
@@ -101,29 +101,146 @@ Errore di sintassi: La condizione if valore.reverse === !valore è errata. Il me
 Logica: La funzione deve confrontare la stringa originale con la sua versione invertita.
 Chiusura del ciclo: Ho utilizzato .join('') per ricostruire la stringa invertita dopo averla trasformata in array e invertita.
 
-// 8. Come si imposta un input di tipo password in HTML e come si può mostrare/nascondere il valore digitato tramite JavaScript?
+ 8. Come si imposta un input di tipo password in HTML e come si può mostrare/nascondere il valore digitato tramite JavaScript?
 
-// 9. In Express, come si accede ai dati inviati nel body di una richiesta POST in formato JSON?
+<form>
+ <input type="password">
+</form>
 
-// 10. Scrivi una regola CSS che rende rosso il testo di tutti i link (<a>) quando il mouse passa sopra.
+<form>
+  <input type="password" id="password" />
+  <button type="button" onclick="togglePassword()">Mostra/Nascondi</button>
+</form>
 
-// 11. Qual è la differenza tra un tag <section> e un tag <article> in HTML? Fai un esempio pratico di utilizzo.
+<script>
+  function togglePassword() {
+    const passwordField = document.getElementById("password");
+    if (passwordField.type === "password") {
+      passwordField.type = "text";
+    } else {
+      passwordField.type = "password";
+    }
+  }
+</script>
 
-// 12. Scrivi una query SQL per selezionare tutte le pizze con prezzo superiore a 8 euro e ordinale per nome in ordine crescente.
+ 9. In Express, come si accede ai dati inviati nel body di una richiesta POST in formato JSON?
 
-// 13. In CSS, come si selezionano tutti i <li> che sono il primo figlio di ogni <ul>?
+effettuando il parsing del body con app.use(express())
 
-// 14. Quale proprietà CSS permette di centrare verticalmente un elemento all'interno di un flex container?
+La risposta fornita è incompleta e non precisa. Per accedere ai dati inviati nel body di una richiesta POST in formato JSON con Express, è necessario utilizzare il middleware express.json().
 
-// 15. Dato l'array const utenti = [{nome: "Anna"}, {nome: "Luca"}], come puoi ottenere un array con solo i nomi usando map?
+Ecco una versione corretta e completa:
 
-// 16. Spiega la differenza tra == e === in JavaScript con un esempio pratico.
+const express = require('express');
+const app = express();
 
-// 17. Scrivi una funzione JavaScript che restituisce true se un numero passato come parametro è pari, false altrimenti.
+// Middleware per effettuare il parsing del body in formato JSON
+app.use(express.json());
 
-// 18. Come si gestisce la validazione di un campo obbligatorio in un form HTML senza usare JavaScript?
+app.post('/endpoint', (req, res) => {
+    const dati = req.body; // Accede ai dati inviati nel body della richiesta
+    console.log(dati);
+    res.send('Dati ricevuti');
+});
+
+// Avvia il server
+app.listen(3000, () => {
+    console.log('Server in ascolto sulla porta 3000');
+});
+
+10. Scrivi una regola CSS che rende rosso il testo di tutti i link (<a>) quando il mouse passa sopra.
+
+a:hover {
+ color: red
+}
+
+11. Qual è la differenza tra un tag <section> e un tag <article> in HTML? Fai un esempio pratico di utilizzo.
+
+il tag article è l'itero articolo, le section sono i suoi blocchi interni, che vanno iniziati con un titolo h1 o h2
+
+Risposta corretta:
+Il tag <article> rappresenta un contenuto autonomo e indipendente, come un articolo di giornale, un post di blog o un commento. Il tag <section> invece viene utilizzato per suddividere il contenuto in sezioni tematiche o logiche all'interno di una pagina o di un articolo.
+
+Esempio pratico:
+<article>
+  <h1>Titolo dell'articolo</h1>
+  <section>
+    <h2>Introduzione</h2>
+    <p>Questo è il paragrafo introduttivo.</p>
+  </section>
+  <section>
+    <h2>Conclusione</h2>
+    <p>Questo è il paragrafo conclusivo.</p>
+  </section>
+</article>
+
+ 12. Scrivi una query SQL per selezionare tutte le pizze con prezzo superiore a 8 euro e ordinale per nome in ordine crescente.
+
+ select * from pizze where price < 8€ GROUP BY ASC
+
+ La query SQL fornita contiene errori di sintassi e logica. Ecco una versione corretta per selezionare tutte le pizze con prezzo superiore a 8 euro e ordinarle per nome in ordine crescente:
+
+ SELECT * FROM pizze 
+WHERE price > 8 
+ORDER BY name ASC;
+
+Condizione WHERE: Cambiato price < 8€ in price > 8 per selezionare pizze con prezzo superiore a 8 euro. Inoltre, il simbolo € non è valido in SQL.
+Clausola ORDER BY: Utilizzato ORDER BY name ASC per ordinare i risultati in ordine crescente in base al nome.
+Rimosso GROUP BY: La clausola GROUP BY non è necessaria in questo contesto, poiché non stiamo raggruppando i dati.
+
+ 13. In CSS, come si selezionano tutti i <li> che sono il primo figlio di ogni <ul>?
+
+ ul > li:first-child {
+    color: red; /* Esempio di stile */
+}
+
+Spiegazione:
+
+ul > li:first-child: Il selettore > indica che stiamo selezionando solo gli <li> che sono figli diretti di <ul>.
+:first-child: Questo pseudo-classe seleziona il primo figlio di un elemento.
+Se hai bisogno di ulteriori chiarimenti o di un esempio pratico, fammi sapere!
+
+ 14. Quale proprietà CSS permette di centrare verticalmente un elemento all'interno di un flex container?
+
+ la proprietà align-items: center
+
+ 15. Dato l'array const utenti = [{nome: "Anna"}, {nome: "Luca"}], come puoi ottenere un array con solo i nomi usando map?
+
+utenti.map(utente => utente.nome)
+
+ 16. Spiega la differenza tra == e === in JavaScript con un esempio pratico.
+
+== ugualglianza debole, non confronta il tipo, mentre === uguaglianza forte, confronta anche il tipo
+
+17. Scrivi una funzione JavaScript che restituisce true se un numero passato come parametro è pari, false altrimenti.
+
+function(num){
+    if (num % 2 === 0) {
+        return true
+    }
+    else return false
+}
+
+
+ 18. Come si gestisce la validazione di un campo obbligatorio in un form HTML senza usare JavaScript?
 
 // 19. In una richiesta HTTP con Express, dove si trovano i parametri passati tramite query string?
+
+In una richiesta HTTP con Express, i parametri passati tramite query string si trovano nell'oggetto req.query.
+
+const express = require('express');
+const app = express();
+
+app.get('/search', (req, res) => {
+    const queryParams = req.query; // Accede ai parametri della query string
+    console.log(queryParams); // Esempio: { q: 'pizza', category: 'food' }
+    res.send('Parametri ricevuti');
+});
+
+// Avvia il server
+app.listen(3000, () => {
+    console.log('Server in ascolto sulla porta 3000');
+});
 
 // 20. Scrivi un esempio di media query CSS che nasconde un elemento con classe "sidebar" su schermi con larghezza inferiore a 600px.
 
@@ -133,7 +250,12 @@ Chiusura del ciclo: Ho utilizzato .join('') per ricostruire la stringa invertita
 
 // 23. Come si crea una relazione molti-a-molti tra due tabelle in MySQL? Scrivi la struttura delle tabelle coinvolte.
 
-// 24. In React, cosa sono i controlled components? Fai un esempio di input controllato.
+24. In React, cosa sono i controlled components? Fai un esempio di input controllato.
+
+Spiegazione:
+I controlled components in React sono componenti in cui il valore di un elemento del form (come un input, textarea, o select) è controllato dallo stato del componente. In altre parole, il valore dell'elemento è determinato dal state del componente, e ogni modifica al valore dell'elemento aggiorna il state.
+
+Questo approccio consente di avere un controllo completo sul valore dell'input e di gestire la logica del form direttamente nel componente React.
 
 // 25. Spiega la differenza tra props e state in un componente React.
 
@@ -166,3 +288,64 @@ Chiusura del ciclo: Ho utilizzato .join('') per ricostruire la stringa invertita
 // 39. In React Router, come si definisce una rotta dinamica e come si accede al parametro nell'URL?
 
 // 40. Scrivi un esempio di funzione che usa il destructuring delle props in un componente React.
+
+import React, { useState } from 'react';
+
+function Form() {
+  const [formData, setFormData] = useState({
+    nome: '',
+    email: '',
+    password: ''
+  });
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData(prevState => ({
+      ...prevState, // Copia il resto dell'oggetto
+      [name]: value // Aggiorna solo il campo modificato
+    }));
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log('Dati del form:', formData);
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <label>
+        Nome:
+        <input
+          type="text"
+          name="nome"
+          value={formData.nome}
+          onChange={handleChange}
+        />
+      </label>
+      <br />
+      <label>
+        Email:
+        <input
+          type="email"
+          name="email"
+          value={formData.email}
+          onChange={handleChange}
+        />
+      </label>
+      <br />
+      <label>
+        Password:
+        <input
+          type="password"
+          name="password"
+          value={formData.password}
+          onChange={handleChange}
+        />
+      </label>
+      <br />
+      <button type="submit">Invia</button>
+    </form>
+  );
+}
+
+export default Form;
