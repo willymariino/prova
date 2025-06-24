@@ -62,3 +62,35 @@
 - L’`header` resta separato in alto con il suo sfondo muro bianco.
 - Il layout è pulito, semantico e flessibile.
 
+### Cosa significa “non aveva un’altezza garantita”
+
+Dire che `.bacheca` non aveva “altezza garantita” significa che **il browser non sapeva quanto doveva essere alto quell’elemento**, perché:
+
+- **Non ha un `min-height` o `height` esplicito**
+- **Non ha contenuti interni che spingano la sua altezza**
+- **Il suo contenuto (come `#polaroid-grid`) era `position: absolute`**, quindi _non contava_ nel calcolo dell’altezza
+
+In pratica, `.bacheca` era come un contenitore trasparente che non vedeva nulla dentro — quindi rimaneva schiacciato, e di conseguenza anche il suo `background`.
+
+---
+
+### E cosa fa `flex: 1`?
+
+Quando usi `flex: 1`, stai dicendo:
+
+> “Fai sì che questo elemento cresca e riempia lo spazio *disponibile* all’interno del suo contenitore flex.”
+
+Ma se **il contenitore (in questo caso `body`) non ha un’altezza nota**, oppure **se il contenuto interno di `.bacheca` non contribuisce all'altezza**, quel `flex: 1` non ha granché da riempire. È come dire: “Riempimi una stanza”… ma nessuno ha ancora costruito il soffitto.
+
+---
+
+###  Cosa abbiamo fatto per garantire l’altezza
+
+1. Abbiamo dato a `html` e `body` un’altezza del **100%** ➜ così il `body` ha davvero una “stanza” intera da riempire.
+2. Abbiamo rimosso `position: absolute` da `#polaroid-grid` ➜ così `.bacheca` può **vedere** il suo contenuto e regolare la sua altezza.
+3. Abbiamo aggiunto `flex: 1` a `.bacheca` ➜ quindi ora si estende per tutto lo spazio disponibile sotto l’header.
+
+ Prima, `flex: 1` c’era, ma non funzionava bene perché non c’erano le “fondamenta” (html e body alti 100%) né il “mobilio” (contenuti visibili) per farlo crescere.
+
+
+
